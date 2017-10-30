@@ -340,7 +340,7 @@ class AppsController(
             }
           case TaskKillingMode.Wipe =>
             onSuccess(taskKiller.kill(appId, findToKill, wipe = true)) { instances =>
-              complete(Json.obj("tasks" -> instances))
+              complete(raml.InstanceList(instances.toRaml))
             }
           case TaskKillingMode.KillWithoutWipe =>
             onSuccess(taskKiller.kill(appId, findToKill, wipe = false)) { instances =>
